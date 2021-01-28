@@ -23,7 +23,11 @@ public class Sales {
         this.champs = champs;
     }
      public String getRegion() {
-        return champs[0];
+         if (this.champs[0].isEmpty())
+         {
+            return null;
+         }
+         return champs[0];
     }
 
     public void setRegion(String region) {
@@ -45,6 +49,10 @@ public class Sales {
     }
     
     public double getTotalProfit() {
+          if (this.champs[13].isEmpty())
+         {
+            return 0;
+         }
         return Double.parseDouble(champs[13]);
     }
 

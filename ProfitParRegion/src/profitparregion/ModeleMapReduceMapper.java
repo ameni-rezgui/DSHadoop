@@ -24,17 +24,11 @@ public class ModeleMapReduceMapper extends Mapper<LongWritable, Text, Text, Doub
     public void map(LongWritable cleE, Text valeurE, Context context)
             throws IOException, InterruptedException
     {
-        // TODO si besoin, ignorer les premières lignes contenant les titres
-        //if (cleE.get() <= ???) return;
-
-        // données d'entrée provenant des fichiers à traiter
+      
         String ligne = valeurE.toString();
-        // aucune paire (clé, valeur) ne sera produite en cas d'exception
+   
         try {
 
-            // TODO séparer la ligne en champs
-
-            // TODO définir la clé de sortie
            Sales sale = new Sales(ligne);
             cleI.set(new Text(""+sale.getRegion()+""));
             valeurI.set(sale.getTotalProfit());

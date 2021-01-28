@@ -5,6 +5,7 @@
  */
 package profitparitemtype;
 import java.io.IOException;
+import org.apache.hadoop.io.DoubleWritable;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -13,24 +14,21 @@ import org.apache.hadoop.mapreduce.Reducer;
  *
  * @author hadoop
  */
-public class ModeleMapReduceReducer extends Reducer<Text, IntWritable, Text, IntWritable>{
+public class ModeleMapReduceReducer extends Reducer<Text, DoubleWritable, Text, DoubleWritable>{
     // allocation mémoire de la clé et valeur de sortie
     private Text cleS;
-    private IntWritable valeurS = new IntWritable();
+    private DoubleWritable valeurS = new DoubleWritable();
 @Override
-    public void reduce(Text cleI, Iterable<IntWritable> valeursI, Context context)
+    public void reduce(Text cleI, Iterable<DoubleWritable> valeursI, Context context)
             throws IOException, InterruptedException
     {
-        // définir la clé de sortie
         cleS = cleI;
-// TODO calculer la valeur de sortie
-        int resultat = 0;
-        for (IntWritable valeurI : valeursI) {
-            int val = valeurI.get();
+        double resultat = 0;
+        for (DoubleWritable valeurI : valeursI) {
+            double val = valeurI.get();
             resultat = resultat+val;
         }
         valeurS.set(resultat);
-// émettre une paire (clé, valeur)
         context.write(cleS, valeurS);
     }
     

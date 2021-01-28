@@ -21,21 +21,12 @@ public class Sales {
     public void setChamps(String[] champs) {
         this.champs = champs;
     }
-     public String getRegion() {
-        return champs[0];
-    }
-
-    public void setRegion(String region) {
-        this.champs[0] = region;
-    }
-    public String getCountry() {
-        return champs[1];
-    }
-
-    public void setCountry(String country) {
-        this.champs[1] = country;
-    }
+   
     public String getItemType() {
+          if (this.champs[2].isEmpty())
+         {
+            return null;
+         }
         return champs[2];
     }
 
